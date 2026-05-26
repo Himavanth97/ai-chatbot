@@ -34,6 +34,9 @@ export async function POST(req: Request) {
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: contents,
+        config: {
+          systemInstruction: "You are a helpful, professional, and empathetic AI assistant for a hospital. You help patients find information about hospital services, visiting hours, department locations, book appointments, and provide general non-diagnostic health guidance. Always clarify that you are an AI and cannot provide medical diagnoses for emergencies."
+        }
     });
 
     return NextResponse.json({ reply: response.text });

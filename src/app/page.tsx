@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Sparkles } from "lucide-react";
+import { Send, Bot, User, HeartPulse } from "lucide-react";
 
 type Message = {
   id: string;
@@ -14,7 +14,7 @@ export default function Home() {
     {
       id: "1",
       role: "assistant",
-      content: "Hello! I am your AI assistant. How can I help you today?",
+      content: "Hello! I am your Hospital Care Assistant. I can help you with hospital services, visiting hours, or finding the right department. How can I assist you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -85,9 +85,9 @@ export default function Home() {
     <main className="chat-container">
       <header className="header">
         <div className="header-icon">
-          <Sparkles size={24} />
+          <HeartPulse size={24} />
         </div>
-        <h1 className="header-title">Gemini AI Assistant</h1>
+        <h1 className="header-title">CareConnect Hospital</h1>
       </header>
 
       <div className="messages-area">
