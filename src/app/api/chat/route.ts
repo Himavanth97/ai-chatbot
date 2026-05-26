@@ -1,10 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 
-// Initialize the Gemini API client using the provided key
-// In a production app, this should definitely be in an environment variable
-// e.g. process.env.GEMINI_API_KEY
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAtDBl0wb0Yn0GJHPDCWXfJmumjYT1R3dQ" });
+// Initialize the Gemini API client using the environment variable
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function POST(req: Request) {
   try {
