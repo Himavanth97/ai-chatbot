@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #0b1120;
   --foreground: #f8fafc;
@@ -10,12 +14,6 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 24px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -32,10 +30,9 @@ body {
 }
 
 .chat-container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  width: 95%;
-  height: calc(100vh - 4rem);
+  max-width: 400px;
+  width: 100%;
+  height: 500px;
   display: flex;
   flex-direction: column;
   background: var(--panel-bg);
@@ -48,7 +45,7 @@ body {
 }
 
 .header {
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--panel-border);
   display: flex;
   align-items: center;
@@ -56,7 +53,7 @@ body {
 }
 
 .header-title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
   background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
@@ -67,7 +64,7 @@ body {
 .header-icon {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   border-radius: 50%;
-  padding: 0.5rem;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,15 +75,15 @@ body {
 .messages-area {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   scroll-behavior: smooth;
 }
 
 .messages-area::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .messages-area::-webkit-scrollbar-track {
@@ -100,8 +97,8 @@ body {
 
 .message-wrapper {
   display: flex;
-  gap: 1rem;
-  max-width: 85%;
+  gap: 0.75rem;
+  max-width: 90%;
   animation: fadeUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
   transform: translateY(10px);
@@ -117,14 +114,14 @@ body {
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
@@ -139,10 +136,10 @@ body {
 }
 
 .message-bubble {
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  line-height: 1.5;
+  font-size: 0.875rem;
   word-wrap: break-word;
 }
 
@@ -159,14 +156,14 @@ body {
 }
 
 .input-area {
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   border-top: 1px solid var(--panel-border);
   background: rgba(15, 17, 21, 0.4);
 }
 
 .input-form {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   position: relative;
 }
 
@@ -175,10 +172,10 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  padding: 1rem 3.5rem 1rem 1.5rem;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
   color: var(--foreground);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.875rem;
   transition: all 0.2s ease;
   outline: none;
 }
@@ -195,13 +192,13 @@ body {
 
 .send-button {
   position: absolute;
-  right: 0.5rem;
+  right: 0.4rem;
   top: 50%;
   transform: translateY(-50%);
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -230,12 +227,12 @@ body {
   display: flex;
   gap: 4px;
   align-items: center;
-  height: 24px;
+  height: 20px;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   background: var(--accent-primary);
   border-radius: 50%;
   animation: bounce 1.4s infinite ease-in-out both;
@@ -258,31 +255,4 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* markdown styles within message bubbles */
-.message-bubble p {
-  margin-bottom: 0.75em;
-}
-.message-bubble p:last-child {
-  margin-bottom: 0;
-}
-.message-bubble pre {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
-  overflow-x: auto;
-  margin: 0.75em 0;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.message-bubble code {
-  font-family: var(--font-geist-mono), monospace;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-.message-bubble pre code {
-  background: none;
-  padding: 0;
 }

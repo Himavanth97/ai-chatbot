@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Doctor {
+  id           String        @id @default(uuid())
+  name         String
+  specialtyId  String
+  availability String        // JSON string or simple text describing shifts
+  contactInfo  String
+  department   Department    @relation(fields: [specialtyId], references: [id])
+  appointments Appointment[]
+}
+
+model Department {
+  id            String        @id @default(uuid())
+  name          String
+  layoutType    String        // emergency, cardiology, pediatrics, oncology
+  floorLocation String
+  doctors       Doctor[]
+  appointments  Appointment[]
+}
+
+model Patient {
+  id             String        @id @default(uuid())
+  name           String
+  dob            DateTime
+  medicalHistory String        // JSON string or text
+  appointments   Appointment[]
+}
+
+model Appointment {
+  id           String     @id @default(uuid())
+  patientId    String
+  doctorId     String
+  departmentId String
+  status       String     // Admitted, Scheduled, Discharged, etc.
+  vitalsLog    String     // JSON string storing treatment-specific metrics
+  
+  patient      Patient    @relation(fields: [patientId], references: [id])
+  doctor       Doctor     @relation(fields: [doctorId], references: [id])
+  department   Department @relation(fields: [departmentId], references: [id])
+}
